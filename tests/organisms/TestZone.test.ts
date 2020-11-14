@@ -1,9 +1,9 @@
 import TestZone from "@/components/organisms/TestZone.vue";
-import { mount } from "@vue/test-utils";
+import { shallowMount } from "@vue/test-utils";
 
 describe("TestZone", () => {
   it("renders without errors", () => {
-    const wrapper = mount(TestZone);
+    const wrapper = shallowMount(TestZone);
     expect(wrapper.exists()).toBe(true);
   });
 });

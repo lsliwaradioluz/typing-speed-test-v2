@@ -1,6 +1,20 @@
+import { Getter } from "vuex";
 import { State } from "./state";
 
-const accuracy = (state: State): number => {
+export interface Getters {
+  [getterName: string]: Getter<State, any>;
+}
+
+const currentWord: Getter<State, any> = (state) => {
+  return state.wordsToGuess[state.currentWordIndex];
+};
+
+const remainingWords: Getter<State, any> = (state) => {
+  state.wordsToGuess.splice(0, 1);
+  return state.wordsToGuess;
+};
+
+const accuracy: Getter<State, any> = (state) => {
   if (state.wordsTotal == 0) {
     return 0;
   } else {
@@ -8,6 +22,10 @@ const accuracy = (state: State): number => {
   }
 };
 
-export default {
+const getters: Getters = {
   accuracy,
+  currentWord,
+  remainingWords,
 };
+
+export default getters;

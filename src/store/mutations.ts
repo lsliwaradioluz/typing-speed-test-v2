@@ -1,10 +1,23 @@
+import { Mutation } from "vuex";
 import { State } from "./state";
 
-const openSaveScore = (state: State) => {
+export interface Mutations {
+  [mutationName: string]: Mutation<State>;
+}
+
+export const decrementTimeleft: Mutation<State> = (state) => {
+  state.timeLeft--;
+};
+
+const setGuess: Mutation<State> = (state, payload) => {
+  state.guess = payload;
+};
+
+const openSaveScore: Mutation<State> = (state) => {
   state.showNameModal = !state.showNameModal;
 };
 
-const resetScore = (state: State) => {
+const resetScore: Mutation<State> = (state) => {
   state.charsPerMinute = 0;
   state.wordsTotal = 0;
   state.correctWords = 0;
@@ -13,12 +26,18 @@ const resetScore = (state: State) => {
   state.showNameModal = false;
 };
 
-const setName = (state: State, name: string) => {
-  state.name = name;
+const setName: Mutation<State> = (state, name) => {
+  if (name) {
+    state.name = name;
+  }
 };
 
-export default {
+const mutations: Mutations = {
   openSaveScore,
+  setGuess,
   resetScore,
   setName,
+  decrementTimeleft,
 };
+
+export default mutations;
