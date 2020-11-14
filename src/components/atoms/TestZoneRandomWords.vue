@@ -1,7 +1,7 @@
 <template>
   <div class="random-words">
-    <p class="word">{{ lettersLeft }}</p>
-    <p class="word">{{ words }}</p>
+    <p class="word" data-test="current-word">{{ lettersLeft }}</p>
+    <p class="word" data-test="remaining-words">{{ words }}</p>
   </div>
 </template>
 

@@ -1,5 +1,6 @@
 import { Mutation } from "vuex";
 import { State } from "./state";
+import randomWords from "random-words";
 
 export interface Mutations {
   [mutationName: string]: Mutation<State>;
@@ -40,6 +41,7 @@ const resetScore: Mutation<State> = (state) => {
   state.timeLeft = 60;
   state.name = "";
   state.showNameModal = false;
+  state.wordsToGuess = randomWords(100);
 };
 
 const setName: Mutation<State> = (state, name) => {
