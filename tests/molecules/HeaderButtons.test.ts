@@ -1,7 +1,7 @@
-import HeaderButtons from "./HeaderButtons.vue";
+import HeaderButtons from "@/components/molecules/HeaderButtons.vue";
 import { shallowMount, Wrapper, createLocalVue } from "@vue/test-utils";
 import Vuex from "vuex";
-import { findByTestAttribute } from "../../testing/utils";
+import { findByTestAttribute } from "@/testing/utils";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);

@@ -1,4 +1,4 @@
-import Header from "./Header.vue";
+import Header from "@/components/organisms/Header.vue";
 import { Wrapper, createLocalVue, shallowMount } from "@vue/test-utils";
 import Vuex from "vuex";
 import { findByTestAttribute } from "@/testing/utils";

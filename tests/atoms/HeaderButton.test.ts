@@ -1,4 +1,4 @@
-import HeaderButton from "./HeaderButton.vue";
+import HeaderButton from "@/components/atoms/HeaderButton.vue";
 import { shallowMount } from "@vue/test-utils";
 
 describe("HeaderButton", () => {

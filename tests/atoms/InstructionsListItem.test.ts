@@ -1,4 +1,4 @@
-import InstructionsListItem from "./InstructionsListItem.vue";
+import InstructionsListItem from "@/components/atoms/InstructionsListItem.vue";
 import { mount } from "@vue/test-utils";
 
 describe("InstructionsListItem", () => {

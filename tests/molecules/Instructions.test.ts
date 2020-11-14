@@ -1,7 +1,6 @@
-import Instructions from "./Instructions.vue";
-import Instruction from "../atoms/InstructionsListItem.vue";
+import Instructions from "@/components/molecules/Instructions.vue";
+import Instruction from "@/components/atoms/InstructionsListItem.vue";
 import { mount, Wrapper } from "@vue/test-utils";
-import { findByTestAttribute } from "@/testing/utils";
 
 describe("Instructions", () => {
   let wrapper: Wrapper<Vue>;

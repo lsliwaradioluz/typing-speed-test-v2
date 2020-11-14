@@ -1,4 +1,4 @@
-import HeaderScore from "./HeaderScore.vue";
+import HeaderScore from "@/components/atoms/HeaderScore.vue";
 import { shallowMount } from "@vue/test-utils";
 
 interface Score {
