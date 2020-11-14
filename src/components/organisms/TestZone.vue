@@ -1,5 +1,5 @@
 <template>
-  <div class="test-zone" @keydown="disableKeys">
+  <div class="test-zone">
     <WordsInput />
     <RandomWords />
   </div>
@@ -14,18 +14,6 @@ export default Vue.extend({
   components: {
     WordsInput,
     RandomWords,
-  },
-  methods: {
-    disableKeys(event: KeyboardEvent) {
-      if (event.key == "Enter") {
-        event.preventDefault();
-      } else if (
-        event.code == "Space"
-        // && this.$refs.input.innerHTML.length == 0
-      ) {
-        event.preventDefault();
-      }
-    },
   },
 });
 </script>

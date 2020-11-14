@@ -9,6 +9,23 @@ export const decrementTimeleft: Mutation<State> = (state) => {
   state.timeLeft--;
 };
 
+const incrementWordsTotal: Mutation<State> = (state) => {
+  state.wordsTotal++;
+};
+
+const incrementCorrectWords: Mutation<State> = (state) => {
+  state.correctWords++;
+};
+
+const incrementCharsPerMinute: Mutation<State> = (state, payload) => {
+  state.charsPerMinute += payload;
+};
+
+const incrementCurrentWordIndex: Mutation<State> = (state) => {
+  state.currentWordIndex++;
+  console.log(state.currentWordIndex);
+};
+
 const setGuess: Mutation<State> = (state, payload) => {
   state.guess = payload;
 };
@@ -38,6 +55,10 @@ const mutations: Mutations = {
   resetScore,
   setName,
   decrementTimeleft,
+  incrementWordsTotal,
+  incrementCorrectWords,
+  incrementCharsPerMinute,
+  incrementCurrentWordIndex,
 };
 
 export default mutations;

@@ -1,10 +1,13 @@
 <template>
   <input
     class="words-input"
+    :class="{ strikedThrough: guess.length !== lettersGuessed }"
     type="text"
     spellcheck="false"
     autocomplete="off"
+    :value="guess"
     @input="onInputHandler"
+    @keydown="handleEnterAndSpace"
     :disabled="timeLeft === 0"
   />
 </template>
@@ -26,6 +29,12 @@ export default Vue.extend({
     timeLeft(): number {
       return this.$store.state.timeLeft;
     },
+    guess() {
+      return this.$store.state.guess;
+    },
+    lettersGuessed() {
+      return this.$store.getters.lettersGuessed;
+    },
   },
   methods: {
     onInputHandler(event: InputEvent) {
@@ -42,6 +51,17 @@ export default Vue.extend({
           clearInterval(this.interval!);
         }
       }, 1000);
+    },
+    handleEnterAndSpace(event: KeyboardEvent) {
+      const currentInputValue = (event.target as HTMLInputElement).value.trim();
+      if (event.code === "Enter" || event.code == "Space") {
+        event.preventDefault();
+        if (!currentInputValue) {
+          return;
+        } else {
+          this.$store.dispatch("updateTestScore");
+        }
+      }
     },
   },
 });
@@ -62,5 +82,9 @@ export default Vue.extend({
   overflow: hidden;
   white-space: nowrap;
   border: none;
+}
+
+.strikedThrough {
+  text-decoration: line-through;
 }
 </style>

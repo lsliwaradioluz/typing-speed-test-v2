@@ -8,16 +8,19 @@ localVue.use(Vuex);
 describe("TestZoneWordsInput", () => {
   let wrapper: Wrapper<Vue>;
   let store: Store<any>;
-  const state = { timeLeft: 60 };
+  const state = { timeLeft: 60, guess: "" };
   const mutations = {
     decrementTimeleft: jest.fn(),
     setGuess: jest.fn(),
+  };
+  const actions = {
+    updateTestScore: jest.fn(),
   };
 
   beforeEach(() => {
     jest.clearAllTimers();
     jest.useFakeTimers();
-    store = new Vuex.Store({ state, mutations });
+    store = new Vuex.Store({ state, mutations, actions });
     wrapper = mount(WordsInput, { store, localVue });
   });
 
@@ -39,6 +42,19 @@ describe("TestZoneWordsInput", () => {
     await wrapper.trigger("input");
     jest.advanceTimersByTime(60000);
     expect(mutations.decrementTimeleft).toHaveBeenCalledTimes(60);
+  });
+
+  it("does not dispatch 'updateTestScore' action on space/enter click when input empty", async () => {
+    await wrapper.trigger("keydown", { keyCode: "Space" });
+    await wrapper.trigger("keydown", { keyCode: "Enter" });
+    expect(actions.updateTestScore).toHaveBeenCalledTimes(0);
+  });
+
+  it("dispatches 'updateTestScore' action on space/enter click when input has value", async () => {
+    wrapper.setValue("Somevalue");
+    await wrapper.trigger("keydown", { keyCode: "Space" });
+    await wrapper.trigger("keydown", { keyCode: "Enter" });
+    expect(actions.updateTestScore).toHaveBeenCalledTimes(2);
   });
 
   it("should stop decrementing time after 60 seconds", async () => {
