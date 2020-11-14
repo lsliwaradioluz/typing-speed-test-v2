@@ -23,7 +23,6 @@ const incrementCharsPerMinute: Mutation<State> = (state, payload) => {
 
 const incrementCurrentWordIndex: Mutation<State> = (state) => {
   state.currentWordIndex++;
-  console.log(state.currentWordIndex);
 };
 
 const setGuess: Mutation<State> = (state, payload) => {
