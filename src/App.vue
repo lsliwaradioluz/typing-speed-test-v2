@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <Header />
+    <TestZone />
     <Instructions />
   </div>
 </template>
@@ -9,12 +10,14 @@
 import Vue from "vue";
 import HelloWorld from "./components/HelloWorld.vue";
 import Header from "./components/organisms/Header.vue";
+import TestZone from "./components/organisms/TestZone.vue";
 import Instructions from "./components/molecules/Instructions.vue";
 
 export default Vue.extend({
   name: "App",
   components: {
     Header,
+    TestZone,
     Instructions,
   },
 });

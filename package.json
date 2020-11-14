@@ -9,6 +9,7 @@
     "test": "vue-cli-service test:unit --watch"
   },
   "dependencies": {
+    "random-words": "^1.1.1",
     "vue": "^2.6.11",
     "vuex": "^3.4.0"
   },
