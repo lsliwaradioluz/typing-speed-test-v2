@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <Header />
+    <Instructions />
   </div>
 </template>
 
@@ -8,11 +9,13 @@
 import Vue from "vue";
 import HelloWorld from "./components/HelloWorld.vue";
 import Header from "./components/organisms/Header.vue";
+import Instructions from "./components/molecules/Instructions.vue";
 
 export default Vue.extend({
   name: "App",
   components: {
     Header,
+    Instructions,
   },
 });
 </script>
@@ -33,7 +36,6 @@ export default Vue.extend({
 
 li,
 ul {
-  list-style-type: none;
   padding: 0;
 }
 

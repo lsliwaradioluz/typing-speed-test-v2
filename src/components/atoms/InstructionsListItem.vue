@@ -10,8 +10,4 @@ import Vue from "vue";
 export default Vue.extend({});
 </script>
 
-<style lang="scss" scoped>
-.instruction-list-item {
-  list-style-type: none;
-}
-</style>
+<style lang="scss" scoped></style>
