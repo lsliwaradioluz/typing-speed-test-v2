@@ -2,11 +2,11 @@ import { Mutation } from "vuex";
 import { State, GuessedWord } from "./state";
 import randomWords from "random-words";
 
-export interface Mutations {
+interface Mutations {
   [mutationName: string]: Mutation<State>;
 }
 
-export const decrementTimeleft: Mutation<State> = (state) => {
+const decrementTimeLeft: Mutation<State> = (state) => {
   state.timeLeft--;
 };
 
@@ -32,7 +32,6 @@ const incrementCurrentWordIndex: Mutation<State> = (state) => {
 
 const addNewGuessedWord: Mutation<State> = (state, word: GuessedWord) => {
   state.guessedWords.push(word)
-  console.log(state.guessedWords)
 }
 
 const openSaveScore: Mutation<State> = (state) => {
@@ -60,7 +59,7 @@ const mutations: Mutations = {
   setGuess,
   resetScore,
   setName,
-  decrementTimeleft,
+  decrementTimeLeft,
   incrementWordsTotal,
   incrementCorrectWords,
   incrementCharsPerMinute,

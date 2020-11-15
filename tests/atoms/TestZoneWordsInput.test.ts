@@ -1,43 +1,64 @@
 import WordsInput from "@/components/atoms/TestZoneWordsInput.vue";
-import { mount, Wrapper, createLocalVue } from "@vue/test-utils";
-import Vuex, { Store } from "vuex";
+import { mount, createLocalVue } from "@vue/test-utils";
+import Vuex, { ActionTree, MutationTree } from "vuex";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
+interface State {
+  timeLeft: number;
+  guess: string;
+}
+
+const setup = (
+  state: State,
+  mutations: MutationTree<State>,
+  actions: ActionTree<State, State>
+) => {
+  const store = new Vuex.Store({
+    state,
+    mutations,
+    actions,
+  });
+
+  return mount(WordsInput, { store, localVue });
+};
+
 describe("TestZoneWordsInput", () => {
-  let wrapper: Wrapper<Vue>;
-  let store: Store<any>;
-  const state = { timeLeft: 60, guess: "" };
-  const mutations = {
-    decrementTimeleft: jest.fn(),
-    setGuess: jest.fn(),
-  };
-  const actions = {
-    updateTestScore: jest.fn(),
-  };
+  let state: State;
+  let mutations: MutationTree<State>;
+  let actions: ActionTree<State, State>;
 
   beforeEach(() => {
-    jest.clearAllTimers();
+    state = { timeLeft: 60, guess: "" };
+    mutations = {
+      decrementTimeleft: jest.fn(),
+      setGuess: jest.fn(),
+    };
+    actions = {
+      updateTestScore: jest.fn(),
+    };
     jest.useFakeTimers();
-    store = new Vuex.Store({ state, mutations, actions });
-    wrapper = mount(WordsInput, { store, localVue });
   });
 
   afterEach(() => {
     jest.resetAllMocks();
+    jest.clearAllTimers();
   });
 
   it("renders without errors", () => {
+    const wrapper = setup(state, mutations, actions);
     expect(wrapper.exists()).toBe(true);
   });
 
   it("commits 'setGuess' mutation on input", async () => {
+    const wrapper = setup(state, mutations, actions);
     await wrapper.trigger("input");
     expect(mutations.setGuess).toHaveBeenCalledTimes(1);
   });
 
   it("triggers the clock only once at first letter typed", async () => {
+    const wrapper = setup(state, mutations, actions);
     await wrapper.trigger("input");
     await wrapper.trigger("input");
     jest.advanceTimersByTime(60000);
@@ -45,6 +66,7 @@ describe("TestZoneWordsInput", () => {
   });
 
   it("does not dispatch 'updateTestScore' action on space/enter click when input empty", async () => {
+    const wrapper = setup(state, mutations, actions);
     await wrapper.trigger("keydown", { keyCode: "Space" });
     await wrapper.trigger("keydown", { keyCode: "Enter" });
     expect(actions.updateTestScore).toHaveBeenCalledTimes(0);
@@ -52,14 +74,14 @@ describe("TestZoneWordsInput", () => {
 
   it("dispatches 'updateTestScore' action on space/enter click when input has value", async () => {
     state.guess = "Guess";
-    await wrapper.trigger("keydown", {
-      keyCode: "Space",
-    });
+    const wrapper = setup(state, mutations, actions);
+    await wrapper.trigger("keydown", { keyCode: "Space" });
     await wrapper.trigger("keydown", { keyCode: "Enter" });
     expect(actions.updateTestScore).toHaveBeenCalledTimes(2);
   });
 
   it("should stop decrementing time after 60 seconds", async () => {
+    const wrapper = setup(state, mutations, actions);
     await wrapper.trigger("input");
     jest.advanceTimersByTime(60000);
     state.timeLeft = 0;
@@ -67,7 +89,9 @@ describe("TestZoneWordsInput", () => {
     expect(mutations.decrementTimeleft).toHaveBeenCalledTimes(60);
   });
 
-  it("should not be editable once timeLeft reaches 0", () => {
+  it("should not be editable when timeLeft reaches 0", () => {
+    state.timeLeft = 0;
+    const wrapper = setup(state, mutations, actions);
     expect(wrapper.attributes().contenteditable).toBe("false");
   });
 });
