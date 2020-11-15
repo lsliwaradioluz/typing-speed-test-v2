@@ -1,5 +1,10 @@
 import randomWords from "random-words";
 
+export interface GuessedWord {
+  value: string;
+  correct: boolean;
+}
+
 export interface State {
   name: string;
   showNameModal: boolean;
@@ -11,7 +16,7 @@ export interface State {
   wordsToGuess: string[];
   currentWordIndex: number;
   guess: string;
-  guessedWords: string[];
+  guessedWords: GuessedWord[];
 }
 
 const wordsToGuess = randomWords(100);

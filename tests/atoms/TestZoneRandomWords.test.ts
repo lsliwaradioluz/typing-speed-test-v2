@@ -1,6 +1,6 @@
 import RandomWords from "@/components/atoms/TestZoneRandomWords.vue";
 import { mount, createLocalVue, Wrapper } from "@vue/test-utils";
-import Vuex, { Store, Getter, GetterTree } from "vuex";
+import Vuex, { Store, GetterTree } from "vuex";
 import { findByTestAttribute } from "@/testing/utils";
 import { State } from "@/store/state";
 

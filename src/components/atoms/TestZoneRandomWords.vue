@@ -28,17 +28,20 @@ export default Vue.extend({
 .random-words {
   display: flex;
   height: 10vh;
+  width: 50vw;
+  flex-shrink: 0;
   line-height: 6vh;
   padding: 2vh 0;
   cursor: text;
+  overflow-x: hidden;
 }
 
 .word {
   display: inline-block;
   font-family: "Merriweather", serif;
   white-space: nowrap;
-  overflow-x: hidden;
   font-size: 2rem;
   margin-right: 8px;
+  text-align: right;
 }
 </style>

@@ -51,8 +51,10 @@ describe("TestZoneWordsInput", () => {
   });
 
   it("dispatches 'updateTestScore' action on space/enter click when input has value", async () => {
-    wrapper.setValue("Somevalue");
-    await wrapper.trigger("keydown", { keyCode: "Space" });
+    state.guess = "Guess";
+    await wrapper.trigger("keydown", {
+      keyCode: "Space",
+    });
     await wrapper.trigger("keydown", { keyCode: "Enter" });
     expect(actions.updateTestScore).toHaveBeenCalledTimes(2);
   });
@@ -65,7 +67,7 @@ describe("TestZoneWordsInput", () => {
     expect(mutations.decrementTimeleft).toHaveBeenCalledTimes(60);
   });
 
-  it("should be disabled once timeLeft reaches 0", () => {
-    expect(wrapper.attributes().disabled).not.toBeUndefined();
+  it("should not be editable once timeLeft reaches 0", () => {
+    expect(wrapper.attributes().contenteditable).toBe("false");
   });
 });

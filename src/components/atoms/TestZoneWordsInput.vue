@@ -1,7 +1,7 @@
 <template>
-  <input
+  <!-- <input
     class="words-input"
-    :class="{ strikedThrough: guess.length !== lettersGuessed }"
+    :class="{ strokethrough: guess.length !== lettersGuessed }"
     type="text"
     spellcheck="false"
     autocomplete="off"
@@ -9,6 +9,17 @@
     @input="onInputHandler"
     @keydown="handleEnterAndSpace"
     :disabled="timeLeft === 0"
+  /> -->
+  <p
+    ref="input"
+    class="words-input"
+    :class="{ strokethrough: guess.length !== lettersGuessed }"
+    spellcheck="false"
+    autocomplete="off"
+    :value="guess"
+    @input="onInputHandler"
+    @keydown="handleEnterAndSpace"
+    :contenteditable="timeLeft !== 0"
   />
 </template>
 
@@ -41,7 +52,10 @@ export default Vue.extend({
       if (this.timeLeft === 60 && !this.interval) {
         this.startTimer();
       }
-      this.$store.commit("setGuess", (event.target as HTMLInputElement).value);
+      this.$store.commit(
+        "setGuess",
+        (event.target as HTMLParagraphElement).textContent
+      );
     },
     startTimer(): void {
       this.interval = setInterval(() => {
@@ -52,17 +66,27 @@ export default Vue.extend({
         }
       }, 1000);
     },
+    clearInput() {
+      const input = this.$refs.input as HTMLParagraphElement;
+      input.textContent = "";
+    },
     handleEnterAndSpace(event: KeyboardEvent) {
-      const currentInputValue = (event.target as HTMLInputElement).value.trim();
+      const currentInputValue = this.guess.trim();
       if (event.code === "Enter" || event.code == "Space") {
         event.preventDefault();
         if (!currentInputValue) {
           return;
         } else {
           this.$store.dispatch("updateTestScore");
+          this.clearInput();
         }
       }
     },
+  },
+  mounted() {
+    this.$root.$on("focus-input", () => {
+      (this.$refs.input as HTMLParagraphElement).focus();
+    });
   },
 });
 </script>
@@ -70,7 +94,7 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .words-input {
   height: 10vh;
-  min-width: 1px;
+  min-width: 4px;
   flex-shrink: 0;
   line-height: 6vh;
   padding: 2vh 0;
@@ -84,7 +108,7 @@ export default Vue.extend({
   border: none;
 }
 
-.strikedThrough {
+.strokethrough {
   text-decoration: line-through;
 }
 </style>

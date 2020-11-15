@@ -21,11 +21,11 @@ export default Vue.extend({
   data(): Data {
     return {
       instructions: [
-        "Kliknij na białe pole z czarnym tekstem, aby aktywować kursor",
+        "Kliknij na białe pole, aby aktywować kursor",
         "Uruchom zegar, wpisująć pierwszą literę",
-        "Po wpisaniu wszystkich liter danego słowa, zatwierdź spacją",
-        "Źle wpisane słowa możesz edytować, o ile nie zatwierdziłeś ich spacją",
-        "Nie ma punktów ujemnych za źle wpisane słowa. Po prostu nie liczą się one do wyniku",
+        "Po wpisaniu wszystkich liter danego słowa, zatwierdź spacją lub enterem",
+        "Źle wpisane słowa możesz edytować, o ile nie zostały zatwierdzone",
+        "Zatwierdzenie źle wpisanego słowa nie dodaje go do wyniku, przy okazji obniżając wskaźnik dokładności",
       ],
     };
   },
