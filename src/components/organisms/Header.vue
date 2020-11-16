@@ -52,7 +52,7 @@ export default Vue.extend({
 
 <style scoped>
 .header {
-  padding-top: 5vh;
+  padding-top: 10vh;
   height: 55vh;
   width: 100vw;
   display: flex;

@@ -1,25 +1,17 @@
 <template>
   <div id="app">
-    <Header />
-    <TestZone />
-    <Instructions />
+    <Nav />
+    <router-view />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import HelloWorld from "./components/HelloWorld.vue";
-import Header from "./components/organisms/Header.vue";
-import TestZone from "./components/organisms/TestZone.vue";
-import Instructions from "./components/molecules/Instructions.vue";
+import Nav from "@/components/molecules/Nav.vue";
 
 export default Vue.extend({
   name: "App",
-  components: {
-    Header,
-    TestZone,
-    Instructions,
-  },
+  components: { Nav },
 });
 </script>
 
@@ -48,15 +40,12 @@ ul {
 }
 
 /*ANIMACJE*/
-
 .scale-enter-active {
   animation: scale-in ease-in 0.3s;
 }
-
 .scale-leave-active {
   animation: scale-out ease-out 0.3s;
 }
-
 @keyframes scale-in {
   from {
     transform: scale(1.1);
@@ -67,7 +56,6 @@ ul {
     opacity: 1;
   }
 }
-
 @keyframes scale-out {
   from {
     transform: scale(1);
@@ -78,15 +66,12 @@ ul {
     opacity: 0;
   }
 }
-
 .fade-enter-active {
   animation: fade-in 0.5s ease-in;
 }
-
 .fade-leave-active {
   animation: fade-out 0.5s ease-out;
 }
-
 @keyframes fade-in {
   from {
     opacity: 0;
@@ -95,7 +80,6 @@ ul {
     opacity: 1;
   }
 }
-
 @keyframes fade-out {
   from {
     opacity: 1;
@@ -104,7 +88,6 @@ ul {
     opacity: 0;
   }
 }
-
 @keyframes blur {
   0% {
     text-shadow: 0 0 3px #ff7590;
