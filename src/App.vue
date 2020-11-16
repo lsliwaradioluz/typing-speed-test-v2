@@ -34,6 +34,10 @@ ul {
   padding: 0;
 }
 
+ul {
+  list-style-type: none;
+}
+
 #app {
   height: 100vh;
   background-color: rgb(239, 239, 239);

@@ -2,14 +2,13 @@ import Score from "@/components/atoms/ScoresListScore.vue";
 import { mount, Wrapper } from "@vue/test-utils";
 
 const score = {
-  id: 1,
   name: "Łukasz",
   accuracy: 40,
   characters: 211,
   words: 27,
 };
 
-describe("ScoresListElement", () => {
+describe("ScoresListScore", () => {
   let wrapper: Wrapper<Vue>;
   beforeEach(() => {
     wrapper = mount(Score, {

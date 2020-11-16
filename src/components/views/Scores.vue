@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="scores">
     <ScoresList />
   </div>
 </template>
@@ -13,4 +13,8 @@ export default Vue.extend({
 });
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+  .scores {
+    padding: 5rem 1rem;
+  }
+</style>
