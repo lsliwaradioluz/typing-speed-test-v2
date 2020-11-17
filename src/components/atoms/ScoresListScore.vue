@@ -2,9 +2,9 @@
   <li class="score">
     <ul class="score-details">
       <li class="score-detail" data-test="score-name">Imię: {{ score.name }}</li>
-      <li class="score-detail" data-test="score-accuracy">Dokładność(%): {{ score.accuracy }}</li>
-      <li class="score-detail" data-test="score-characters">Znaki/minutę: {{ score.characters }}</li>
-      <li class="score-detail" data-test="score-words">Słowa/minutę: {{ score.words }}</li>
+      <li class="score-detail">Dokładność(%): {{ score.accuracy }}</li>
+      <li class="score-detail">Znaki/minutę: {{ score.characters }}</li>
+      <li class="score-detail">Słowa/minutę: {{ score.words }}</li>
     </ul>
   </li>
 </template>
